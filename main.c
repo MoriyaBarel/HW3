@@ -12,19 +12,14 @@ char *p_word = word;
 char txt[TXT+1] = {0};
 char *p_txt = txt;
 
-scanf("%s",word);
-int index = 0;
-char c;
-while(index < TXT){
-    scanf("%c",&c);
-    if (c == '~') {
-        break;
+ scanf("%s", word);
+    char c = 0;
+    int i = 0;
+    while (c != '~') {
+        scanf("%c", &c);
+        txt[i] = c;
+        i++;
     }
-    else {
-        txt[index] = c;
-        index++;
-    }
-}
 
 gematria(p_word,p_txt,strlen(word),strlen(txt));
 Atbash(p_word,p_txt,strlen(word),strlen(txt));
