@@ -183,5 +183,4 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
         }   
         free(copy);
     }
-    printf("\n");
 }
