@@ -12,7 +12,6 @@ char *p_word = word;
 char txt[TXT+1] = {0};
 char *p_txt = txt;
 
-// printf("enter the text: ");
 scanf("%s",word);
 int index = 0;
 char c;

@@ -130,13 +130,22 @@ void Atbash(char *word,char *txt,int word_len,int txt_len){
     printf("\n");
 }
 
-char* copyString(char s[], int len)
-{
+char* copyString(char s[], int len) {
     char* s2;
     s2 = (char*)calloc(len,sizeof(char));
  
     strcpy(s2, s);
     return (char*)s2;
+}
+
+int contains(char *copy ,char ch,int copy_len){
+    for (int i = 0; i < copy_len ; i++){
+        if (ch == copy[i]) {
+            copy[i] = '~';
+            return 1;
+           }
+    }
+        return 0;
 }
 
 void Anagram(char *word,char *txt,int word_len,int txt_len){
@@ -145,40 +154,33 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
     int avoid = 0;
     for (int i = 0; i < txt_len; i++) {
         copy = copyString(word,word_len);
-        for (int j = 0; j < word_len; j++) {
-            if (txt[i] == word[j]) {
-                copy[j] = '~';
-                int counter = 1;
-                int k = 0;
-                int flag = 1;
-                while (i+counter < txt_len && k < word_len) {
-                    if (txt[i+counter] == ' ') { 
-                        counter++;
-                        continue;
-                    }
-                    if (txt[i+counter] == copy[k]) {
-                        copy[k] = '~';
-                        flag++;
-                        counter++; 
-                    }
-                    if(flag == word_len){
-                        break;
-                    }
-                    k++;
+        if (contains(copy,txt[i],word_len)) {
+            int counter = 1;
+            int k = 0;
+            int flag = 1;
+            while (i + counter < txt_len && k < word_len) {
+                if (txt[i + counter] == ' ') {
+                    counter++;
+                    continue;
                 }
-                if (flag == word_len){
-                    if(avoid != 0){
-                        printf("~");
-                    }
-                    avoid++;
-                    int temp = 0;
-                    while(temp < counter){
-                        printf("%c",txt[i+temp]);
-                        temp++;
-                    }
+                if (contains(copy,txt[i+counter],word_len)) {
+                    flag++;
+                    counter++;
+                }
+                k++;
+            }
+            if (flag == word_len) {
+                if (avoid != 0) {
+                    printf("~");
+                }
+                avoid++;
+                int temp = 0;
+                while (temp < counter) {
+                    printf("%c",txt[i + temp]);
+                    temp++;
                 }
             }
-        }
+        }   
         free(copy);
     }
     printf("\n");
