@@ -26,9 +26,8 @@ while(index < TXT){
     }
 }
 
-// printf("word: %s\n",word);
-// printf("txt: %s\n",txt);
 gematria(p_word,p_txt,strlen(word),strlen(txt));
 Atbash(p_word,p_txt,strlen(word),strlen(txt));
 Anagram(p_word,p_txt,strlen(word),strlen(txt));
+
 }
