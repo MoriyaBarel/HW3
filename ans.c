@@ -57,7 +57,7 @@ void Gematria(char *word,char *txt,int word_len,int txt_len){
 } 
 
 //converting char to atbash value 
-char* Atb(char ch) {
+char Atb(char ch) {
     char ans=ch;
     if (ch > 64 && ch < 91) {
         ans = (char)('A' + 'Z' - ch);
