@@ -7,7 +7,7 @@
 #define TXT 1024
 #define WORD 30
 
-// calculate the gematria value of char
+//calculate the gematria value of char
 int gm(char ch){
     if(ch > 64 && ch < 91){
         return ch-64;
@@ -20,7 +20,7 @@ int gm(char ch){
     }
 }
 
-void gematria(char *word,char *txt,int word_len,int txt_len){
+void Gematria(char *word,char *txt,int word_len,int txt_len){
     printf("Gematria Sequences: ");
     int i = 0;
     int word_sum = 0;
@@ -28,7 +28,7 @@ void gematria(char *word,char *txt,int word_len,int txt_len){
         word_sum += gm(word[i]);
         i++;
     }
-    int avoid = 0;
+    int avoid = 0; //using to avoid ~ printing in the beginning of the answar
     i = 0;
     while (i < txt_len){
         int txt_sum = 0;
@@ -56,7 +56,8 @@ void gematria(char *word,char *txt,int word_len,int txt_len){
     printf("\n");  
 } 
 
-char Atb(char ch) {
+//converting char to atbash value 
+char* Atb(char ch) {
     char ans=ch;
     if (ch > 64 && ch < 91) {
         ans = (char)('A' + 'Z' - ch);
@@ -69,7 +70,7 @@ char Atb(char ch) {
 
 void Atbash(char *word,char *txt,int word_len,int txt_len){
     printf("Atbash Sequences: ");
-    int avoid = 0;
+    int avoid = 0; //using to avoid ~ printing in the beginning of the answar
     for (int i = 0; i < txt_len; i++) {
         char first_letter = Atb(word[0]);
         char last_letter = Atb(word[word_len-1]);
@@ -130,6 +131,7 @@ void Atbash(char *word,char *txt,int word_len,int txt_len){
     printf("\n");
 }
 
+//copying char array to another char array using calloc and strcpy
 char* copyString(char s[], int len) {
     char* s2;
     s2 = (char*)calloc(len,sizeof(char));
@@ -138,6 +140,7 @@ char* copyString(char s[], int len) {
     return (char*)s2;
 }
 
+//checking if char array contains a given char and if it contains replace the char in the array to tilda
 int contains(char *copy ,char ch,int copy_len){
     for (int i = 0; i < copy_len ; i++){
         if (ch == copy[i]) {
@@ -151,13 +154,13 @@ int contains(char *copy ,char ch,int copy_len){
 void Anagram(char *word,char *txt,int word_len,int txt_len){
     printf("Anagram Sequences: ");
     char * copy;
-    int avoid = 0;
+    int avoid = 0; //using to avoid ~ printing in the beginning of the answar
     for (int i = 0; i < txt_len; i++) {
         copy = copyString(word,word_len);
         if (contains(copy,txt[i],word_len)) {
             int counter = 1;
             int k = 0;
-            int flag = 1;
+            int flag = 1; //update every time that contains func return 1(true)
             while (i + counter < txt_len && k < word_len) {
                 if (txt[i + counter] == ' ') {
                     counter++;
@@ -184,6 +187,6 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
                 }
             }
         }   
-        free(copy);
+        free(copy); //free the memory of the copy array that storge with callc
     }
 }

@@ -11,7 +11,6 @@ stringProg :  main.o libans.a
 ans.o: ans.c ans.h
 	$(CC) $(FLAGS) -c ans.c
 
-
 libans.a: ans.o 
 	$(AR) -rcs libans.a ans.o 
 
