@@ -167,6 +167,9 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
                     flag++;
                     counter++;
                 }
+                if (flag == word_len) {
+                    break;
+                }
                 k++;
             }
             if (flag == word_len) {
