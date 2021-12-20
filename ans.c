@@ -159,7 +159,7 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
         copy = copyString(word,word_len);
         if (contains(copy,txt[i],word_len)) {
             int counter = 1;
-            int k = 0;
+            int k = 1;
             int flag = 1; //update every time that contains func return 1(true)
             while (i + counter < txt_len && k < word_len) {
                 if (txt[i + counter] == ' ') {
@@ -169,9 +169,6 @@ void Anagram(char *word,char *txt,int word_len,int txt_len){
                 if (contains(copy,txt[i+counter],word_len)) {
                     flag++;
                     counter++;
-                }
-                if (flag == word_len) {
-                    break;
                 }
                 k++;
             }
